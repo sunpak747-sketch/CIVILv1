@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIVIL 3D | By พิสุทธิศักดิ์ </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <style>
+        body { font-family: 'Kanit', sans-serif; background-color: #020617; scroll-behavior: smooth; }
+        .mono { font-family: 'JetBrains Mono', 'Kanit', sans-serif; }
+        .cyber-panel { background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(20px); border: 1px solid rgba(249, 115, 22, 0.15); }
+        .cyber-panel:hover { border-color: rgba(249, 115, 22, 0.3); box-shadow: 0 0 20px rgba(249, 115, 22, 0.05); }
+        .active-tab { background-color: #f97316 !important; color: #0f172a !important; font-weight: bold; }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #f97316; }
+    </style>
+</head>
+<body class="text-slate-100 min-h-screen grid-bg">
+
+    <nav class="sticky top-0 z-50 cyber-panel border-b border-slate-900 px-4 py-3 flex justify-between items-center">
+        <div class="flex items-center space-x-3">
+            <div class="bg-gradient-to-r from-orange-500 to-amber-500 p-2.5 rounded-xl text-slate-950 font-black text-xl shadow-lg">
+                <i class="fa-solid fa-layer-group"></i>
+            </div>
+            <div>
+                <span class="text-lg md:text-xl font-black bg-gradient-to-r from-white to-orange-400 bg-clip-text text-transparent">CIVIL 3D | By พิสุทธิศักดิ์</span>
+                <span class="block text-[8px] text-orange-400 font-mono tracking-widest uppercase">PRO STRUCTURAL EXPERT OS</span>
+            </div>
+        </div>
+
+        <div class="hidden xl:flex space-x-6 text-xs font-semibold uppercase tracking-wider">
+            <a href="#ai-section" class="hover:text-orange-400 transition-colors"><i class="fa-solid fa-brain mr-1"></i>AI วิเคราะห์</a>
+            <a href="#cad-section" class="hover:text-orange-400 transition-colors"><i class="fa-solid fa-cubes mr-1"></i>3D CAD Space</a>
+            <a href="#calculator-section" class="hover:text-orange-400 transition-colors"><i class="fa-solid fa-calculator mr-1"></i>30 ระบบคำนวณ</a>
+            <a href="#knowledge-section" class="hover:text-orange-400 transition-colors"><i class="fa-solid fa-book-open mr-1"></i>คลังมาตรฐานวิชาชีพ</a>
+        </div>
+
+        <button onclick="toggleTerminal()" class="bg-slate-950 hover:bg-slate-900 text-orange-400 text-[10px] font-mono py-1.5 px-3 rounded-lg border border-orange-500/20 transition flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse"></span>
+            <i class="fa-solid fa-terminal"></i> CONSOLE
+        </button>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-3 md:px-6 py-6 space-y-8">
+        
+        <header class="text-center space-y-2">
+            <span class="inline-flex items-center gap-1.5 text-[9px] font-mono font-bold tracking-widest bg-orange-500/10 text-orange-400 px-3.5 py-1.5 rounded-full border border-orange-500/20">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> WEBGL CORE: ONLINE | RESPONSIVE MOBILE ENABLED
+            </span>
+            <h1 class="text-2xl md:text-4xl font-black uppercase tracking-tight">ระบบผู้เชี่ยวชาญสนับสนุนการออกแบบและประเมินผลงานโยธา</h1>
+            <p class="text-slate-400 text-xs max-w-2xl mx-auto">จัดทำโดย พิสุทธิศักดิ์ ยังเป็นระบบทดลองใช้งานอยู่มีอัพเดตเรื่อยๆ
+                
+            </p>
+        </header>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div class="cyber-panel p-3.5 rounded-xl text-center">
+                <span class="block text-[9px] text-slate-500 uppercase font-bold tracking-wider">AI Knowledge Engines</span>
+                <span class="text-md md:text-lg font-black text-orange-400">มยผ. / วสท. / ACI / AISC</span>
+            </div>
+            <div class="cyber-panel p-3.5 rounded-xl text-center">
+                <span class="block text-[9px] text-slate-500 uppercase font-bold tracking-wider">ฟังก์ชันการคำนวณวิศวกรรม</span>
+                <span class="text-md md:text-lg font-black text-cyan-400">30 Advanced Modules</span>
+            </div>
+            <div class="cyber-panel p-3.5 rounded-xl text-center">
+                <span class="block text-[9px] text-slate-500 uppercase font-bold tracking-wider">3D CAD Elements</span>
+                <span class="text-md md:text-lg font-black text-yellow-400">9 Structural Types</span>
+            </div>
+            <div class="cyber-panel p-3.5 rounded-xl text-center">
+                <span class="block text-[9px] text-slate-500 uppercase font-bold tracking-wider">ระบบความปลอดภัยพิกัด</span>
+                <span class="text-md md:text-lg font-black text-purple-400">SDM & LRFD Compliant</span>
+            </div>
+        </div>
+
+        <section id="cad-section" class="cyber-panel rounded-2xl p-4 md:p-6 space-y-4">
+            <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 border-b border-slate-800 pb-4">
+                <div>
+                    <h3 class="text-lg md:text-xl font-black flex items-center gap-2"><i class="fa-solid fa-cubes text-yellow-500"></i>ADVANCED 3D CAD ENGINE SPACE</h3>
+                    <p class="text-slate-400 text-xs">เครื่องมือออกแบบจำลองวัตถุ 3 มิติเชิงวิศวกรรมจำลองความยาว ขนาดรูปทรงแบบโต้ตอบ</p>
+                </div>
+                <div class="flex flex-wrap gap-1.5 w-full lg:w-auto">
+                    <button onclick="add3DObject('column')" class="text-[11px] px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-cyan-400 font-bold rounded-lg border border-slate-800 transition"><i class="fa-solid fa-grip-lines-vertical mr-1"></i>+ เสา</button>
+                    <button onclick="add3DObject('beam')" class="text-[11px] px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-yellow-400 font-bold rounded-lg border border-slate-800 transition"><i class="fa-solid fa-ruler-horizontal mr-1"></i>+ คาน</button>
+                    <button onclick="add3DObject('footing')" class="text-[11px] px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-purple-400 font-bold rounded-lg border border-slate-800 transition"><i class="fa-solid fa-boxes-stacked mr-1"></i>+ ฐานราก</button>
+                    <button onclick="add3DObject('pile')" class="text-[11px] px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-emerald-400 font-bold rounded-lg border border-slate-800 transition"><i class="fa-solid fa-circle-nodes mr-1"></i>+ เสาเข็ม</button>
+                    <button onclick="add3DObject('slab')" class="text-[11px] px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-pink-400 font-bold rounded-lg border border-slate-800 transition"><i class="fa-solid fa-square mr-1"></i>+ แผ่นพื้น</button>
+                    <button onclick="add3DObject('rebar')" class="text-[11px] px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-orange-400 font-bold rounded-lg border border-slate-800 transition"><i class="fa-solid fa-lines-leaning mr-1"></i>+ เหล็กแกน</button>
+                    <button onclick="add3DObject('stirrup')" class="text-[11px] px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-rose-400 font-bold rounded-lg border border-slate-800 transition"><i class="fa-solid fa-vector-square mr-1"></i>+ เหล็กปลอก</button>
+                    <button onclick="add3DObject('truss')" class="text-[11px] px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-indigo-400 font-bold rounded-lg border border-slate-800 transition"><i class="fa-solid fa-triangle-nodes mr-1"></i>+ โครงถัก</button>
+                    <button onclick="add3DObject('wall')" class="text-[11px] px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-teal-400 font-bold rounded-lg border border-slate-800 transition"><i class="fa-solid fa-border-all mr-1"></i>+ ผนังรับแรง</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
+                <div class="lg:col-span-3 relative bg-[#02050c] border border-slate-900 rounded-xl overflow-hidden h-[300px] md:h-[480px]">
+                    <div id="canvas3d-container" class="w-full h-full"></div>
+                    <div class="absolute bottom-3 left-3 bg-slate-950/90 px-3 py-2 rounded-lg border border-slate-800 text-[10px] font-mono text-slate-400 space-y-0.5">
+                        <div>วัตถุสะสม: <span id="object-count" class="text-orange-400 font-bold">0</span> ชิ้น</div>
+                        <div>การแสดงผล: <span id="render-mode-text" class="text-cyan-400">Solid Mode</span></div>
+                    </div>
+                    <div class="absolute top-3 right-3 flex gap-2">
+                        <button onclick="toggleWireframe()" class="bg-slate-950/90 border border-slate-800 hover:text-orange-400 p-2 rounded text-xs transition"><i class="fa-solid fa-border-none"></i> Wireframe</button>
+                        <button onclick="clear3DScene()" class="bg-rose-950/90 border border-rose-900 text-rose-400 p-2 rounded text-xs hover:bg-rose-600 hover:text-slate-950 transition"><i class="fa-solid fa-trash-can"></i> ล้างข้อมูล</button>
+                    </div>
+                </div>
+
+                <div class="cyber-panel p-4 rounded-xl flex flex-col justify-between space-y-4">
+                    <div class="space-y-3">
+                        <span class="block text-xs font-bold text-orange-400 uppercase tracking-wide border-b border-slate-800 pb-1.5"><i class="fa-solid fa-sliders mr-1.5"></i>ตัวช่วยควบคุมมุมกล้อง 3D</span>
+                        <div class="grid grid-cols-3 gap-1 text-[11px] text-center">
+                            <button onclick="setCameraView('top')" class="bg-slate-900 border border-slate-800 py-1.5 rounded hover:border-orange-500">TOP</button>
+                            <button onclick="setCameraView('front')" class="bg-slate-900 border border-slate-800 py-1.5 rounded hover:border-orange-500">FRONT</button>
+                            <button onclick="setCameraView('side')" class="bg-slate-900 border border-slate-800 py-1.5 rounded hover:border-orange-500">SIDE</button>
+                        </div>
+                        <div class="bg-slate-950/80 p-3 rounded-lg border border-slate-900 text-[11px] text-slate-400 space-y-1.5 leading-relaxed">
+                            <span class="block text-[10px] font-bold text-slate-300">💡 การควบคุมผ่านทัชสกรีนโทรศัพท์:</span>
+                            <p>• <b>ใช้นิ้วเดียวลาก:</b> หมุนโมเดลอิสระ (Orbit)</p>
+                            <p>• <b>ใช้สองนิ้วกาง/หุบ:</b> ซูมเข้า-ออก (Pinch Zoom)</p>
+                            <p>• <b>ใช้สองนิ้วลากพร้อมกัน:</b> เลื่อนกล้อง (Pan)</p>
+                        </div>
+                    </div>
+                    <div class="bg-slate-900/40 p-3 rounded-lg border border-slate-800 text-[10px] text-slate-500 font-mono space-y-1">
+                        <div>ENGINE: Three.js r128</div>
+                        <div>Z-AXIS: VERTICAL UP (วสท.)</div>
+                        <div>GRID SPACING: 1.0 เมตร</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ai-section" class="cyber-panel rounded-2xl overflow-hidden flex flex-col h-[520px] shadow-2xl">
+            <div class="px-4 py-3 bg-slate-900/90 border-b border-slate-800 flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <span class="w-3 h-3 bg-orange-500 rounded-full animate-pulse"></span>
+                    <h3 class="font-bold text-sm text-slate-200">CIVIL AUTOMATION AI EXPERT ENGINE v12.0</h3>
+                </div>
+                <span class="text-[9px] font-mono bg-orange-500/10 text-orange-400 px-2 py-0.5 rounded border border-orange-500/20">KNOWLEDGE COMPLIED V.2026</span>
+            </div>
+
+            <div id="ai-chat-box" class="flex-1 p-4 overflow-y-auto space-y-4 text-xs md:text-sm">
+                <div class="flex items-start space-x-3">
+                    <div class="bg-slate-900 text-orange-400 p-2.5 rounded-lg text-xs border border-orange-500/20"><i class="fa-solid fa-robot"></i></div>
+                    <div class="bg-slate-900/80 rounded-xl px-4 py-3 border border-slate-800 leading-relaxed text-slate-300 max-w-[90%]">
+                        สวัสดีครับวิศวกรและผู้ใช้งานทุกท่าน! ผมคือระบบ **AI Civil Matrix Engine v12.0** ฐานข้อมูลความรู้วิศวกรรมโยธาที่ได้รับการอัปเกรดขยายขีดความสามารถเต็มพิกัด ครอบคลุมกฎหมายควบคุมอาคาร, โครงสร้างเหล็ก, งานปูน-คอนกรีต, ฐานราก และการสำรวจ <br><br>
+                        💡 **พิมพ์คีย์เวิร์ดเหล่านี้เพื่อตรวจสอบข้อกำหนดทันที:** <br>
+                        `ฐานราก`, `สูตรคาน`, `คอนกรีต`, `เหล็กเส้น`, `กฎหมายระยะร่น`, `นั่งร้าน`, `งานทาง`, `ทดสอบดิน`, `พิกัดน้ำหนัก`, `แผ่นดินไหว`
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-3 border-t border-slate-900 bg-slate-950/60">
+                <form onsubmit="handleOfflineAIQuery(event)" class="flex gap-2">
+                    <input type="text" id="ai-input" required placeholder="ถามข้อกำหนดวิศวกรรม เช่น 'มาตรฐานนั่งร้าน' หรือ 'ความหนาแน่นเหล็ก'..." class="flex-1 bg-slate-900 border border-slate-800 rounded-lg px-3 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-orange-500">
+                    <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-slate-950 font-black px-4 py-2.5 rounded-lg text-xs transition flex items-center space-x-1">
+                        <span>ถาม AI</span>
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <section id="calculator-section" class="space-y-4">
+            <div>
+                <h3 class="text-xl font-black uppercase tracking-tight"><i class="fa-solid fa-calculator text-emerald-400 mr-2"></i>30 PROFESSIONAL CIVIL CALCULATORS</h3>
+                <p class="text-slate-400 text-xs">เครื่องมือประเมินและวิเคราะห์ถอดปริมาณงานวิศวกรรมครอบคลุมทุกหมวดหมู่ พร้อมสเปกสูตรคำนวณหน้างานจริง</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+                <div class="cyber-panel p-4 rounded-xl space-y-2.5 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-black text-slate-200 block"><i class="fa-solid fa-cube text-orange-400 mr-1"></i>1. แปลงกำลังอัด Cylinder ➔ Cube</span>
+                        <p class="text-[10px] text-slate-500">แปลงตามสูตรมาตรฐาน วสท. F_cube = F_cylinder / 0.85</p>
+                    </div>
+                    <div class="space-y-2">
+                        <input type="number" id="sc-cyl" placeholder="กำลังทรงกระบอก (ksc)" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs text-orange-400">
+                        <button onclick="calcCylinderToCube()" class="w-full bg-orange-500 text-slate-950 font-bold py-1.5 rounded-lg text-xs hover:bg-orange-600 transition">คำนวณ</button>
+                    </div>
+                    <div id="res-sc" class="text-xs text-slate-400 font-mono min-h-[16px]"></div>
+                </div>
+
+                <div class="cyber-panel p-4 rounded-xl space-y-2.5 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-black text-slate-200 block"><i class="fa-solid fa-fill-drip text-cyan-400 mr-1"></i>2. ปริมาณคอนกรีตเทพื้น (คิว)</span>
+                        <p class="text-[10px] text-slate-500">กว้าง x ยาว x หนา (รวมเผื่อสูญเสียหน้างานระบุได้)</p>
+                    </div>
+                    <div class="space-y-1.5">
+                        <div class="grid grid-cols-3 gap-1">
+                            <input type="number" id="sl-w" placeholder="กว้าง (ม.)" class="bg-slate-950 border border-slate-800 rounded-lg p-1.5 text-xs">
+                            <input type="number" id="sl-l" placeholder="ยาว (ม.)" class="bg-slate-950 border border-slate-800 rounded-lg p-1.5 text-xs">
+                            <input type="number" id="sl-t" placeholder="หนา (ซม.)" class="bg-slate-950 border border-slate-800 rounded-lg p-1.5 text-xs">
+                        </div>
+                        <input type="number" id="sl-waste" value="5" placeholder="เปอร์เซ็นต์เผื่อเสีย (%)" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-1.5 text-xs">
+                        <button onclick="calcSlabConcrete()" class="w-full bg-cyan-600 font-bold py-1.5 rounded-lg text-xs hover:bg-cyan-500 transition">คำนวณ</button>
+                    </div>
+                    <div id="res-sl" class="text-xs text-slate-400 font-mono min-h-[16px]"></div>
+                </div>
+
+                <div class="cyber-panel p-4 rounded-xl space-y-2.5 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-black text-slate-200 block"><i class="fa-solid fa-ruler-horizontal text-yellow-400 mr-1"></i>3. น้ำหนักคาน คสล. (Dead Load)</span>
+                        <p class="text-[10px] text-slate-500">คำนวณน้ำหนักต่อเมตรเชิงเส้นตามขนาดหน้าตัด</p>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="grid grid-cols-2 gap-2">
+                            <input type="number" id="bm-w" placeholder="กว้างคาน (ม.)" class="bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                            <input type="number" id="bm-h" placeholder="ลึกคาน (ม.)" class="bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                        </div>
+                        <button onclick="calcBeamWeight()" class="w-full bg-yellow-500 text-slate-950 font-bold py-1.5 rounded-lg text-xs hover:bg-yellow-600 transition">คำนวณ</button>
+                    </div>
+                    <div id="res-bm" class="text-xs text-slate-400 font-mono min-h-[16px]"></div>
+                </div>
+
+                <div class="cyber-panel p-4 rounded-xl space-y-2.5 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-black text-slate-200 block"><i class="fa-solid fa-weight-hanging text-purple-400 mr-1"></i>4. น้ำหนักรวมเหล็กเส้นเสริม</span>
+                        <p class="text-[10px] text-slate-500">คำนวณหาน้ำหนักรวมจากมวลมาตรฐานตามขนาดมิติต่างๆ</p>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="grid grid-cols-2 gap-2">
+                            <select id="st-dia" class="bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                                <option value="6">RB6 (0.222 kg/m)</option>
+                                <option value="9">RB9 (0.499 kg/m)</option>
+                                <option value="12">DB12 (0.888 kg/m)</option>
+                                <option value="16">DB16 (1.580 kg/m)</option>
+                                <option value="20">DB20 (2.470 kg/m)</option>
+                                <option value="25">DB25 (3.850 kg/m)</option>
+                                <option value="28">DB28 (4.830 kg/m)</option>
+                                <option value="32">DB32 (6.313 kg/m)</option>
+                            </select>
+                            <input type="number" id="st-len" placeholder="ความยาวรวม (ม.)" class="bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                        </div>
+                        <button onclick="calcSteelWeight()" class="w-full bg-purple-600 font-bold py-1.5 rounded-lg text-xs hover:bg-purple-50 transition">คำนวณ</button>
+                    </div>
+                    <div id="res-st" class="text-xs text-slate-400 font-mono min-h-[16px]"></div>
+                </div>
+
+                <div class="cyber-panel p-4 rounded-xl space-y-2.5 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-black text-slate-200 block"><i class="fa-solid fa-arrows-up-down text-emerald-400 mr-1"></i>5. กำลังดึงเหล็กใช้งานที่จุดคราก (Yield)</span>
+                        <p class="text-[10px] text-slate-500">หาแรงดึงสูงสุดของเนื้อเหล็กเส้นรับแรงตามเกรดคุณภาพ</p>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="grid grid-cols-2 gap-2">
+                            <select id="fy-grade" class="bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                                <option value="2400">SR24 (2,400 ksc)</option>
+                                <option value="3000">SD30 (3,000 ksc)</option>
+                                <option value="4000">SD40 (4,000 ksc)</option>
+                                <option value="5000">SD50 (5,000 ksc)</option>
+                            </select>
+                            <input type="number" id="fy-area" placeholder="พท. หน้าตัด As (cm²)" class="bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                        </div>
+                        <button onclick="calcSteelStrength()" class="w-full bg-emerald-600 font-bold py-1.5 rounded-lg text-xs hover:bg-emerald-500 transition">คำนวณ</button>
+                    </div>
+                    <div id="res-fy" class="text-xs text-slate-400 font-mono min-h-[16px]"></div>
+                </div>
+
+                <div class="cyber-panel p-4 rounded-xl space-y-2.5 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-black text-slate-200 block"><i class="fa-solid fa-mortar-pestle text-rose-400 mr-1"></i>6. สัดส่วนผสมคอนกรีต (ปริมาตร)</span>
+                        <p class="text-[10px] text-slate-500">คำนวณแยกวัสดุ ปูน ทราย หิน สำหรับงานหล่อหน้างาน</p>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="grid grid-cols-2 gap-2">
+                            <select id="mix-ratio" class="bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                                <option value="1:2:4">1:2:4 (งานโครงสร้างทั่วไป)</option>
+                                <option value="1:1.5:3">1:1.5:3 (งานรับแรงดึงสูง)</option>
+                                <option value="1:3:5">1:3:5 (งานเทลีนหยาบ)</option>
+                            </select>
+                            <input type="number" id="mix-vol" placeholder="ปริมาตรรวม (คิว)" class="bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                        </div>
+                        <button onclick="calcConcreteMix()" class="w-full bg-rose-600 font-bold py-1.5 rounded-lg text-xs hover:bg-rose-500 transition">คำนวณ</button>
+                    </div>
+                    <div id="res-mix" class="text-xs text-slate-400 font-mono min-h-[16px]"></div>
+                </div>
+
+                <div class="cyber-panel p-4 rounded-xl space-y-2.5 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-black text-slate-200 block"><i class="fa-solid fa-turn-down text-sky-400 mr-1"></i>7. ระยะงอปลายเหล็กตะขอ 90° / 135°</span>
+                        <p class="text-[10px] text-slate-500">คำนวณตามเกณฑ์ระยะการยึดเหนี่ยวในคอนกรีต</p>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="grid grid-cols-2 gap-2">
+                            <input type="number" id="bend-db" placeholder="ขนาดเหล็ก (มม.)" class="bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                            <select id="bend-type" class="bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                                <option value="12">ตะขอหลัก 90° (12db)</option>
+                                <option value="6">ตะขอปลอก 135° (6db)</option>
+                            </select>
+                        </div>
+                        <button onclick="calcSteelBend()" class="w-full bg-sky-600 font-bold py-1.5 rounded-lg text-xs hover:bg-sky-500 transition">คำนวณ</button>
+                    </div>
+                    <div id="res-bend" class="text-xs text-slate-400 font-mono min-h-[16px]"></div>
+                </div>
+
+                <div class="cyber-panel p-4 rounded-xl space-y-2.5 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-black text-slate-200 block"><i class="fa-solid fa-anchor text-pink-400 mr-1"></i>8. กำลังรับแรงฝืดผิวเสาเข็มดินเหนียว</span>
+                        <p class="text-[10px] text-slate-500">สูตรประเมินสถิติค่าน้ำหนักปลอดภัยเบื้องต้น: Qs = alpha * Cu * As</p>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="grid grid-cols-2 gap-2">
+                            <input type="number" id="soil-cu" placeholder="แรงเฉือน Cu (t/m²)" class="bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                            <input type="number" id="soil-area" placeholder="พท. ผิวสัมผัส (m²)" class="bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                        </div>
+                        <button onclick="calcSkinFriction()" class="w-full bg-pink-600 font-bold py-1.5 rounded-lg text-xs hover:bg-pink-500 transition">คำนวณ</button>
+                    </div>
+                    <div id="res-soil" class="text-xs text-slate-400 font-mono min-h-[16px]"></div>
+                </div>
+
+                <div class="cyber-panel p-4 rounded-xl space-y-2.5 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-black text-slate-200 block"><i class="fa-solid fa-border-all text-teal-400 mr-1"></i>9. จำนวนก้อนอิฐบล็อกก่อผนัง</span>
+                        <p class="text-[10px] text-slate-500">คิดคำนวณพื้นที่สุทธิมาตรฐานบวกเปอร์เซ็นต์เผื่อแตก</p>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="grid grid-cols-2 gap-2">
+                            <input type="number" id="wall-w" placeholder="ความยาวผนัง (ม.)" class="bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                            <input type="number" id="wall-h" placeholder="ความสูงผนัง (ม.)" class="bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                        </div>
+                        <button onclick="calcWallBlocks()" class="w-full bg-teal-600 font-bold py-1.5 rounded-lg text-xs hover:bg-teal-500 transition">คำนวณ</button>
+                    </div>
+                    <div id="res-wall" class="text-xs text-slate-400 font-mono min-h-[16px]"></div>
+                </div>
+
+                <div class="cyber-panel p-4 rounded-xl space-y-2.5 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-black text-slate-200 block"><i class="fa-solid fa-wind text-cyan-400 mr-1"></i>10. แรงลมปะทะโครงสร้างเบื้องต้น</span>
+                        <p class="text-[10px] text-slate-500">อ้างอิงแรงดันลมมาตรฐานแปรผันตามระดับความสูงของอาคาร</p>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="grid grid-cols-2 gap-2">
+                            <input type="number" id="wind-height" placeholder="ความสูงทั้งหมด (ม.)" class="bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                            <input type="number" id="wind-area" placeholder="พท. รับลม (m²)" class="bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                        </div>
+                        <button onclick="calcWindLoad()" class="w-full bg-cyan-600 font-bold py-1.5 rounded-lg text-xs hover:bg-cyan-500 transition">คำนวณ</button>
+                    </div>
+                    <div id="res-wind" class="text-xs text-slate-400 font-mono min-h-[16px]"></div>
+                </div>
+
+                <div class="cyber-panel p-4 rounded-xl space-y-2.5 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-black text-slate-200 block"><i class="fa-solid fa-stairs text-amber-500 mr-1"></i>11. วิเคราะห์มุมความชันลูกตั้ง-ลูกนอนบันได</span>
+                        <p class="text-[10px] text-slate-500">ตรวจสอบองศาที่เหมาะสมตามกฎหมายควบคุมอาคาร</p>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="grid grid-cols-2 gap-2">
+                            <input type="number" id="stair-rise" placeholder="ลูกตั้ง (ซม.)" class="bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                            <input type="number" id="stair-run" placeholder="ลูกนอน (ซม.)" class="bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                        </div>
+                        <button onclick="calcStairAngle()" class="w-full bg-amber-500 text-slate-950 font-bold py-1.5 rounded-lg text-xs hover:bg-amber-600 transition">คำนวณ</button>
+                    </div>
+                    <div id="res-stair" class="text-xs text-slate-400 font-mono min-h-[16px]"></div>
+                </div>
+
+                <div class="cyber-panel p-4 rounded-xl space-y-2.5 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-black text-slate-200 block"><i class="fa-solid fa-server text-purple-400 mr-1"></i>12. แรงดันดินด้านข้าง Active Rankine</span>
+                        <p class="text-[10px] text-slate-500">คำนวณหาค่าสัมประสิทธิ์แรงดันดิน Ka และค่าแรงดัน Pa</p>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="grid grid-cols-2 gap-2">
+                            <input type="number" id="soil-phi" placeholder="มุมเสียดทานภายใน (องศา)" class="bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                            <input type="number" id="soil-depth" placeholder="ความลึกผนัง H (ม.)" class="bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                        </div>
+                        <button onclick="calcEarthPressure()" class="w-full bg-purple-600 font-bold py-1.5 rounded-lg text-xs hover:bg-purple-500 transition">คำนวณ</button>
+                    </div>
+                    <div id="res-pressure" class="text-xs text-slate-400 font-mono min-h-[16px]"></div>
+                </div>
+
+                <div class="cyber-panel p-4 rounded-xl space-y-2.5 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-black text-slate-200 block"><i class="fa-solid fa-table-cells text-emerald-400 mr-1"></i>13. ถอดจำนวนแผ่นกระเบื้องปูพื้น</span>
+                        <p class="text-[10px] text-slate-500">ถอดปริมาณพื้นที่ห้องพร้อมคิดคำนวณเปอร์เซ็นต์เศษตัด</p>
+                    </div>
+                    <div class="space-y-1.5">
+                        <div class="grid grid-cols-3 gap-1">
+                            <input type="number" id="tile-area" placeholder="พท. ห้อง (ตร.ม.)" class="bg-slate-950 border border-slate-800 rounded-lg p-1.5 text-xs">
+                            <input type="number" id="tile-w" placeholder="กว้าง (ซม.)" class="bg-slate-950 border border-slate-800 rounded-lg p-1.5 text-xs">
+                            <input type="number" id="tile-l" placeholder="ยาว (ซม.)" class="bg-slate-950 border border-slate-800 rounded-lg p-1.5 text-xs">
+                        </div>
+                        <button onclick="calcTileCount()" class="w-full bg-emerald-600 font-bold py-1.5 rounded-lg text-xs hover:bg-emerald-500 transition">คำนวณ</button>
+                    </div>
+                    <div id="res-tiles" class="text-xs text-slate-400 font-mono min-h-[16px]"></div>
+                </div>
+
+                <div class="cyber-panel p-4 rounded-xl space-y-2.5 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-black text-slate-200 block"><i class="fa-solid fa-building-shield text-rose-400 mr-1"></i>14. กำลังรับน้ำหนักดินปลอดภัย (Terzaghi)</span>
+                        <p class="text-[10px] text-slate-500">วิเคราะห์หาค่าแรงดันประลัยความปลอดภัยสำหรับฐานรากตื้น</p>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="grid grid-cols-2 gap-2">
+                            <input type="number" id="foot-cohesion" placeholder="Cohesion ดิน c (t/m²)" class="bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                            <input type="number" id="foot-sf" value="3" placeholder="Factor of Safety" class="bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                        </div>
+                        <button onclick="calcBearingCapacity()" class="w-full bg-rose-600 font-bold py-1.5 rounded-lg text-xs hover:bg-rose-500 transition">คำนวณ</button>
+                    </div>
+                    <div id="res-bearing" class="text-xs text-slate-400 font-mono min-h-[16px]"></div>
+                </div>
+
+                <div class="cyber-panel p-4 rounded-xl space-y-2.5 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-black text-slate-200 block"><i class="fa-solid fa-vial text-sky-400 mr-1"></i>15. โมเมนต์ดัดสูงสุดคานเดี่ยว (Max Moment)</span>
+                        <p class="text-[10px] text-slate-500">สูตรลัพธ์รับนน. แผ่สม่ำเสมอเต็มความยาวช่วงคาน M = wL²/8</p>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="grid grid-cols-2 gap-2">
+                            <input type="number" id="beam-load" placeholder="นน. บรรทุก w (kg/m)" class="bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                            <input type="number" id="beam-span" placeholder="ความยาวคาน L (ม.)" class="bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                        </div>
+                        <button onclick="calcMaxMoment()" class="w-full bg-sky-600 font-bold py-1.5 rounded-lg text-xs hover:bg-sky-500 transition">คำนวณ</button>
+                    </div>
+                    <div id="res-moment" class="text-xs text-slate-400 font-mono min-h-[16px]"></div>
+                </div>
+
+                <div class="cyber-panel p-4 rounded-xl space-y-2.5 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-black text-slate-200 block"><i class="fa-solid fa-layer-group text-orange-400 mr-1"></i>16. นน.บรรทุกถาวรแผ่นพื้นสำเร็จรูป + Topping</span>
+                        <p class="text-[10px] text-slate-500">คำนวณน้ำหนักกดทับแผ่กระจายตัวลงบนคานรับน้ำหนัก</p>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="grid grid-cols-2 gap-2">
+                            <input type="number" id="slab-thick" value="5" placeholder="หนาคอนกรีตทับหน้า (ซม.)" class="bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                            <input type="number" id="plank-dead" value="120" placeholder="นน.แผ่นพื้นเดิม (kg/m²)" class="bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                        </div>
+                        <button onclick="calcSlabWeight()" class="w-full bg-orange-500 text-slate-950 font-bold py-1.5 rounded-lg text-xs hover:bg-orange-600 transition">คำนวณ</button>
+                    </div>
+                    <div id="res-slabweight" class="text-xs text-slate-400 font-mono min-h-[16px]"></div>
+                </div>
+
+                <div class="cyber-panel p-4 rounded-xl space-y-2.5 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-black text-slate-200 block"><i class="fa-solid fa-flask text-cyan-400 mr-1"></i>17. คำนวณปริมาณน้ำยาประสานคอนกรีต</span>
+                        <p class="text-[10px] text-slate-500">คำนวณสำหรับงานเชื่อมรอยต่อคอนกรีตเก่า-ใหม่</p>
+                    </div>
+                    <div class="space-y-2">
+                        <input type="number" id="bond-area" placeholder="พื้นที่ทาเคลือบประสาน (ตร.ม.)" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                        <button onclick="calcBondingAgent()" class="w-full bg-cyan-600 font-bold py-1.5 rounded-lg text-xs hover:bg-cyan-500 transition">คำนวณ</button>
+                    </div>
+                    <div id="res-bond" class="text-xs text-slate-400 font-mono min-h-[16px]"></div>
+                </div>
+
+                <div class="cyber-panel p-4 rounded-xl space-y-2.5 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-black text-slate-200 block"><i class="fa-solid fa-trowel text-yellow-400 mr-1"></i>18. ระยะห่างของนั่งร้าน/เสาค้ำยันพื้น</span>
+                        <p class="text-[10px] text-slate-500">ประเมินความปลอดภัยของระบบไม้แบบหล่อคอนกรีตสด</p>
+                    </div>
+                    <div class="space-y-2">
+                        <input type="number" id="shoring-thick" placeholder="ความหนาพื้นคอนกรีตที่จะเท (ซม.)" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                        <button onclick="calcShoringSpace()" class="w-full bg-yellow-500 text-slate-950 font-bold py-1.5 rounded-lg text-xs hover:bg-yellow-600 transition">คำนวณ</button>
+                    </div>
+                    <div id="res-shoring" class="text-xs text-slate-400 font-mono min-h-[16px]"></div>
+                </div>
+
+                <div class="cyber-panel p-4 rounded-xl space-y-2.5 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-black text-slate-200 block"><i class="fa-solid fa-sheet-plastic text-purple-400 mr-1"></i>19. ถอดจำนวนแผ่นไม้แบบไม้อัด (ชิ้น)</span>
+                        <p class="text-[10px] text-slate-500">คำนวณจำนวนแผ่นไม้อัดขนาดมาตรฐาน 4x8 ฟุต</p>
+                    </div>
+                    <div class="space-y-2">
+                        <input type="number" id="ply-area" placeholder="พื้นที่ผิวสัมผัสไม้แบบทั้งหมด (ตร.ม.)" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                        <button onclick="calcPlywoodForm()" class="w-full bg-purple-600 font-bold py-1.5 rounded-lg text-xs hover:bg-purple-500 transition">คำนวณ</button>
+                    </div>
+                    <div id="res-plywood" class="text-xs text-slate-400 font-mono min-h-[16px]"></div>
+                </div>
+
+                <div class="cyber-panel p-4 rounded-xl space-y-2.5 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-black text-slate-200 block"><i class="fa-solid fa-vector-square text-emerald-400 mr-1"></i>20. น้ำหนักโครงสร้างเสา/คานเหล็ก H-Beam</span>
+                        <p class="text-[10px] text-slate-500">หาน้ำหนักรวมจากความยาวและมวลมาตรฐานตามสเปกโรงงาน</p>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="grid grid-cols-2 gap-2">
+                            <select id="hbeam-spec" class="bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                                <option value="17.2">H100x100 (17.2 kg/m)</option>
+                                <option value="31.5">H150x150 (31.5 kg/m)</option>
+                                <option value="49.9">H200x200 (49.9 kg/m)</option>
+                                <option value="71.8">H250x250 (71.8 kg/m)</option>
+                                <option value="94.0">H300x300 (94.0 kg/m)</option>
+                            </select>
+                            <input type="number" id="hbeam-len" placeholder="ความยาวรวม (ม.)" class="bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                        </div>
+                        <button onclick="calcHBeamWeight()" class="w-full bg-emerald-600 font-bold py-1.5 rounded-lg text-xs hover:bg-emerald-500 transition">คำนวณ</button>
+                    </div>
+                    <div id="res-hbeam" class="text-xs text-slate-400 font-mono min-h-[16px]"></div>
+                </div>
+
+                <div class="cyber-panel p-4 rounded-xl space-y-2.5 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-black text-slate-200 block"><i class="fa-solid fa-shovel text-rose-400 mr-1"></i>21. ปริมาตรงานดินขุดหลุมฐานราก</span>
+                        <p class="text-[10px] text-slate-500">คำนวณปริมาตรทรงสี่เหลี่ยมตัดคางเผื่อลาดเอียงกันดินพัง</p>
+                    </div>
+                    <div class="space-y-1.5">
+                        <div class="grid grid-cols-3 gap-1">
+                            <input type="number" id="dig-w" placeholder="กว้างล่าง (ม.)" class="bg-slate-950 border border-slate-800 rounded-lg p-1.5 text-xs">
+                            <input type="number" id="dig-l" placeholder="ยาวล่าง (ม.)" class="bg-slate-950 border border-slate-800 rounded-lg p-1.5 text-xs">
+                            <input type="number" id="dig-d" placeholder="ลึก (ม.)" class="bg-slate-950 border border-slate-800 rounded-lg p-1.5 text-xs">
+                        </div>
+                        <button onclick="calcExcavationVolume()" class="w-full bg-rose-600 font-bold py-1.5 rounded-lg text-xs hover:bg-rose-500 transition">คำนวณ</button>
+                    </div>
+                    <div id="res-dig" class="text-xs text-slate-400 font-mono min-h-[16px]"></div>
+                </div>
+
+                <div class="cyber-panel p-4 rounded-xl space-y-2.5 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-black text-slate-200 block"><i class="fa-solid fa-road text-sky-400 mr-1"></i>22. ปริมาณหินคลุกงานรองพื้นทาง (ชั้นคันทาง)</span>
+                        <p class="text-[10px] text-slate-500">คำนวณพื้นที่คิวหินคลุกพร้อมคูณตัวแปรการบดอัดแน่น 1.4</p>
+                    </div>
+                    <div class="space-y-1.5">
+                        <div class="grid grid-cols-3 gap-1">
+                            <input type="number" id="road-w" placeholder="ผิวจราจรกว้าง (ม.)" class="bg-slate-950 border border-slate-800 rounded-lg p-1.5 text-xs">
+                            <input type="number" id="road-l" placeholder="ระยะทางยาว (ม.)" class="bg-slate-950 border border-slate-800 rounded-lg p-1.5 text-xs">
+                            <input type="number" id="road-t" placeholder="ความหนา (ซม.)" class="bg-slate-950 border border-slate-800 rounded-lg p-1.5 text-xs">
+                        </div>
+                        <button onclick="calcRoadSubbase()" class="w-full bg-sky-600 font-bold py-1.5 rounded-lg text-xs hover:bg-sky-500 transition">คำนวณ</button>
+                    </div>
+                    <div id="res-road" class="text-xs text-slate-400 font-mono min-h-[16px]"></div>
+                </div>
+
+                <div class="cyber-panel p-4 rounded-xl space-y-2.5 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-black text-slate-200 block"><i class="fa-solid fa-truck-ramp-box text-pink-400 mr-1"></i>23. คำนวณปริมาตรดินหลังขุด (ดินหลวมสำหรับขนย้าย)</span>
+                        <p class="text-[10px] text-slate-500">คำนวณหาจำนวนเที่ยวรถบรรทุกในการขนย้ายหน้างาน</p>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="grid grid-cols-2 gap-2">
+                            <input type="number" id="soil-bank" placeholder="ดินแน่นในหลุม (ลบ.ม.)" class="bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                            <select id="soil-swell" class="bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                                <option value="1.2">ดินธรรมดา (Swell 20%)</option>
+                                <option value="1.3">ดินเหนียวแข็ง (Swell 30%)</option>
+                                <option value="1.1">ทราย/หินย่อย (Swell 10%)</option>
+                            </select>
+                        </div>
+                        <button onclick="calcSwellVolume()" class="w-full bg-pink-600 font-bold py-1.5 rounded-lg text-xs hover:bg-pink-500 transition">คำนวณ</button>
+                    </div>
+                    <div id="res-swell" class="text-xs text-slate-400 font-mono min-h-[16px]"></div>
+                </div>
+
+                <div class="cyber-panel p-4 rounded-xl space-y-2.5 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-black text-slate-200 block"><i class="fa-solid fa-paint-roller text-teal-400 mr-1"></i>24. คำนวณปริมาณสีทาผนังอาคาร (ถัง)</span>
+                        <p class="text-[10px] text-slate-500">คำนวณปริมาณถังสีมาตรฐานขนาด 5 แกลลอน (ทา 2 เที่ยว)</p>
+                    </div>
+                    <div class="space-y-2">
+                        <input type="number" id="paint-area" placeholder="พื้นที่ผนังสุทธิรวม (ตร.ม.)" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                        <button onclick="calcPaintVolume()" class="w-full bg-teal-600 font-bold py-1.5 rounded-lg text-xs hover:bg-teal-500 transition">คำนวณ</button>
+                    </div>
+                    <div id="res-paint" class="text-xs text-slate-400 font-mono min-h-[16px]"></div>
+                </div>
+
+                <div class="cyber-panel p-4 rounded-xl space-y-2.5 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-black text-slate-200 block"><i class="fa-solid fa-droplet text-cyan-400 mr-1"></i>25. ประมาณการใช้น้ำหล่อบ่มคอนกรีต</span>
+                        <p class="text-[10px] text-slate-500">ประเมินน้ำสำหรับการหล่อชลประทานบ่มพื้นผิวต่อวัน</p>
+                    </div>
+                    <div class="space-y-2">
+                        <input type="number" id="cure-area" placeholder="พื้นที่โครงสร้างบ่ม (ตร.ม.)" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                        <button onclick="calcCuringWater()" class="w-full bg-cyan-600 font-bold py-1.5 rounded-lg text-xs hover:bg-cyan-500 transition">คำนวณ</button>
+                    </div>
+                    <div id="res-cure" class="text-xs text-slate-400 font-mono min-h-[16px]"></div>
+                </div>
+
+                <div class="cyber-panel p-4 rounded-xl space-y-2.5 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-black text-slate-200 block"><i class="fa-solid fa-house-chimney text-amber-500 mr-1"></i>26. น้ำหนักจรบนหลังคา (Live Load) ตามกฎหมาย</span>
+                        <p class="text-[10px] text-slate-500">คำนวณแรงกดในแนวดิ่งตามความลาดเอียงของหลังคา</p>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="grid grid-cols-2 gap-2">
+                            <input type="number" id="roof-pitch" value="30" placeholder="องศาหลังคา (°)" class="bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                            <input type="number" id="roof-area" placeholder="พื้นที่หลังคาราบ (ตร.ม.)" class="bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                        </div>
+                        <button onclick="calcRoofLiveLoad()" class="w-full bg-amber-500 text-slate-950 font-bold py-1.5 rounded-lg text-xs hover:bg-amber-600 transition">คำนวณ</button>
+                    </div>
+                    <div id="res-roof" class="text-xs text-slate-400 font-mono min-h-[16px]"></div>
+                </div>
+
+                <div class="cyber-panel p-4 rounded-xl space-y-2.5 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-black text-slate-200 block"><i class="fa-solid fa-compress text-purple-400 mr-1"></i>27. ประมาณการยุบตัวอัดแน่นชั้นดินเหนียวอ่อน</span>
+                        <p class="text-[10px] text-slate-500">ประเมินจุดการทรุดตัวเบื้องต้นขั้นต้นใน 1 มิติมิติตามน้ำหนักกด</p>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="grid grid-cols-2 gap-2">
+                            <input type="number" id="set-thick" placeholder="หนาชั้นดิน H (ม.)" class="bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                            <input type="number" id="set-stress" placeholder="แรงกดเพิ่มเดลต้า P (t/m²)" class="bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                        </div>
+                        <button onclick="calcSoilSettlement()" class="w-full bg-purple-600 font-bold py-1.5 rounded-lg text-xs hover:bg-purple-500 transition">คำนวณ</button>
+                    </div>
+                    <div id="res-settle" class="text-xs text-slate-400 font-mono min-h-[16px]"></div>
+                </div>
+
+                <div class="cyber-panel p-4 rounded-xl space-y-2.5 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-black text-slate-200 block"><i class="fa-solid fa-square-minus text-emerald-400 mr-1"></i>28. ถอดจำนวนเหล็กปลอกคานและเสา</span>
+                        <p class="text-[10px] text-slate-500">คำนวณจากระยะห่างคำสั่งกระจัดกระจาย (Spacing) ตามความยาว</p>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="grid grid-cols-2 gap-2">
+                            <input type="number" id="stir-len" placeholder="ความยาวคานรวม (ม.)" class="bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                            <input type="number" id="stir-space" value="15" placeholder="ระยะแอดห่าง (ซม.)" class="bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                        </div>
+                        <button onclick="calcStirrupCount()" class="w-full bg-emerald-600 font-bold py-1.5 rounded-lg text-xs hover:bg-emerald-500 transition">คำนวณ</button>
+                    </div>
+                    <div id="res-stirrup" class="text-xs text-slate-400 font-mono min-h-[16px]"></div>
+                </div>
+
+                <div class="cyber-panel p-4 rounded-xl space-y-2.5 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-black text-slate-200 block"><i class="fa-solid fa-wheelchair text-rose-400 mr-1"></i>29. ความยาวทางลาดผู้พิการตามกฎหมาย (1:12)</span>
+                        <p class="text-[10px] text-slate-500">หาความยาวลาดสุทธิตามระดับความสูงต่างระดับที่ต้องการ</p>
+                    </div>
+                    <div class="space-y-2">
+                        <input type="number" id="ramp-height" placeholder="ความสูงต่างระดับ (ซม.)" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs">
+                        <button onclick="calcRampLength()" class="w-full bg-rose-600 font-bold py-1.5 rounded-lg text-xs hover:bg-rose-500 transition">คำนวณ</button>
+                    </div>
+                    <div id="res-ramp" class="text-xs text-slate-400 font-mono min-h-[16px]"></div>
+                </div>
+
+                <div class="cyber-panel p-4 rounded-xl space-y-2.5 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-black text-slate-200 block"><i class="fa-solid fa-weight-scale text-sky-400 mr-1"></i>30. แปลงค่าหน่วยแรงดันมาตรฐาน PSI ➔ KSC</span>
+                        <p class="text-[10px] text-slate-500">การแปลงค่าแรงกดคอนกรีตจากระบบอังกฤษเข้าสู่ระบบสากล</p>
+                    </div>
+                    <div class="space-y-2">
+                        <input type="number" id="unit-psi" placeholder="แรงกดปอนด์ต่อตร.นิ้ว (psi)" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs text-sky-400">
+                        <button onclick="calcPsiToKsc()" class="w-full bg-sky-600 font-bold py-1.5 rounded-lg text-xs hover:bg-sky-500 transition">คำนวณ</button>
+                    </div>
+                    <div id="res-psi" class="text-xs text-slate-400 font-mono min-h-[16px]"></div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="knowledge-section" class="space-y-4">
+            <div>
+                <h3 class="text-lg font-bold flex items-center gap-2"><i class="fa-solid fa-book-bookmark text-orange-400"></i>คลังสารานุกรมวิชาการและกฎหมายวิศวกรรมควบคุม</h3>
+                <p class="text-slate-400 text-xs">แหล่งรวบรวมข้อมูลอ้างอิงเชิงปฏิบัติการสำหรับวิศวกรและสถาปนิกไทย</p>
+            </div>
+            
+            <div id="articles-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                </div>
+        </section>
+
+    </main>
+
+    <div id="terminal-panel" class="fixed bottom-0 left-0 w-full bg-slate-950 border-t-2 border-orange-500 h-[220px] z-50 p-4 font-mono text-xs text-emerald-400 hidden flex flex-col">
+        <div class="flex justify-between items-center border-b border-slate-900 pb-2 mb-2">
+            <span><i class="fa-solid fa-terminal mr-2"></i>SYSTEM DIAGNOSTIC TERMINAL INTERFACE</span>
+            <button onclick="toggleTerminal()" class="text-rose-500 hover:text-white font-bold">[X] CLOSE</button>
+        </div>
+        <div id="terminal-log" class="flex-1 overflow-y-auto space-y-1 text-[11px]">
+            <div>[INIT] CIVIL-CORE CORE ENGINE v12.0 INITIALIZED SUCCESSFULLY.</div>
+            <div>[RENDERER] THREE.JS WEBGL RENDER WINDOW INTEGRATED SUCCESSFULLY.</div>
+            <div>[STATUS] ALL 30 CALCULATION SYSTEM LOADED AND WAITING INPUT OVER SYSTEM.</div>
+        </div>
+    </div>
+
+    <footer class="text-center text-slate-600 text-[9px] font-mono tracking-widest py-8 border-t border-slate-900">
+        &copy; 2026 CIVIL-CORE PLATINUM ARCHITECTURE SYSTEM. OPEN-SOURCE ENGINEERING CLIENT FRAMEWORK.
+    </footer>
+
+    <script>
+        // --- 1. 3D WEBGL CAD ENGINE (Three.js Engine setup) ---
+        let scene, camera, renderer, controls;
+        let objects3D = [];
+        let isWireframe = false;
+
+        function init3DSpace() {
+            const container = document.getElementById('canvas3d-container');
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x02050c);
+
+            camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+            camera.position.set(12, 12, 18);
+
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(width, height);
+            container.appendChild(renderer.domElement);
+
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.08;
+
+            // Structural Grid and axis helper alignment
+            const gridHelper = new THREE.GridHelper(30, 30, 0xf97316, 0x1e293b);
+            scene.add(gridHelper);
+
+            const axesHelper = new THREE.AxesHelper(6);
+            scene.add(axesHelper);
+
+            // Lightning modules
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+            scene.add(ambientLight);
+
+            const dirLight = new THREE.DirectionalLight(0xffffff, 0.7);
+            dirLight.position.set(15, 25, 10);
+            scene.add(dirLight);
+
+            function animate() {
+                requestAnimationFrame(animate);
+                controls.update();
+                renderer.render(scene, camera);
+            }
+            animate();
+
+            window.addEventListener('resize', onWindowResize, false);
+        }
+
+        function onWindowResize() {
+            const container = document.getElementById('canvas3d-container');
+            if(!container) return;
+            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.clientWidth, container.clientHeight);
+        }
+
+        function setCameraView(viewType) {
+            if(viewType === 'top') { camera.position.set(0, 22, 0); }
+            else if(viewType === 'front') { camera.position.set(0, 0, 22); }
+            else if(viewType === 'side') { camera.position.set(22, 0, 0); }
+            controls.target.set(0,0,0);
+        }
+
+        // Expanded 9 Object Types for Engineering modeling
+        function add3DObject(type) {
+            let geometry, material, mesh;
+            const wireMode = isWireframe;
+
+            if (type === 'column') {
+                geometry = new THREE.BoxGeometry(0.8, 4, 0.8);
+                material = new THREE.MeshStandardMaterial({ color: 0x22d3ee, wireframe: wireMode });
+            } else if (type === 'beam') {
+                geometry = new THREE.BoxGeometry(5, 0.6, 0.4);
+                material = new THREE.MeshStandardMaterial({ color: 0xeab308, wireframe: wireMode });
+            } else if (type === 'footing') {
+                geometry = new THREE.BoxGeometry(2, 0.6, 2);
+                material = new THREE.MeshStandardMaterial({ color: 0xa855f7, wireframe: wireMode });
+            } else if (type === 'pile') {
+                geometry = new THREE.CylinderGeometry(0.3, 0.3, 6, 16);
+                material = new THREE.MeshStandardMaterial({ color: 0x10b981, wireframe: wireMode });
+            } else if (type === 'slab') {
+                geometry = new THREE.BoxGeometry(6, 0.15, 6);
+                material = new THREE.MeshStandardMaterial({ color: 0xec4899, wireframe: wireMode });
+            } else if (type === 'rebar') {
+                geometry = new THREE.CylinderGeometry(0.04, 0.04, 5, 8);
+                material = new THREE.MeshStandardMaterial({ color: 0xf97316, wireframe: wireMode });
+            } else if (type === 'stirrup') {
+                geometry = new THREE.BoxGeometry(0.5, 0.5, 0.02);
+                material = new THREE.MeshBasicMaterial({ color: 0xf43f5e, wireframe: true });
+            } else if (type === 'truss') {
+                geometry = new THREE.ConeGeometry(0.5, 2, 4);
+                material = new THREE.MeshStandardMaterial({ color: 0x6366f1, wireframe: wireMode });
+            } else if (type === 'wall') {
+                geometry = new THREE.BoxGeometry(4, 3, 0.2);
+                material = new THREE.MeshStandardMaterial({ color: 0x14b8a6, wireframe: wireMode });
+            }
+
+            mesh = new THREE.Mesh(geometry, material);
+            // Distribute across the grid randomly
+            mesh.position.set((Math.random() - 0.5) * 8, 1.5, (Math.random() - 0.5) * 8);
+            scene.add(mesh);
+            objects3D.push(mesh);
+            document.getElementById('object-count').innerText = objects3D.length;
+            logTerminal(`[CAD] Added structural element: ${type.toUpperCase()}`);
+        }
+
+        function toggleWireframe() {
+            isWireframe = !isWireframe;
+            objects3D.forEach(obj => { obj.material.wireframe = isWireframe; });
+            document.getElementById('render-mode-text').innerText = isWireframe ? "Wireframe Mode" : "Solid Mode";
+        }
+
+        function clear3DScene() {
+            objects3D.forEach(obj => { scene.remove(obj); });
+            objects3D = [];
+            document.getElementById('object-count').innerText = 0;
+            logTerminal("[CAD] Cleared workspace workspace elements completely.");
+        }
+
+        // --- 2. 30 MEGA ENGINEERING LOGIC ENGINE FUNCTIONS ---
+        function calcCylinderToCube() {
+            const cyl = parseFloat(document.getElementById('sc-cyl').value);
+            if(isNaN(cyl) || cyl <= 0) return;
+            document.getElementById('res-sc').innerHTML = `💡 กำลังลูกบาศก์เทียบคู่ = <b> ${(cyl / 0.85).toFixed(2)} ksc</b>`;
+        }
+
+        function calcSlabConcrete() {
+            const w = parseFloat(document.getElementById('sl-w').value);
+            const l = parseFloat(document.getElementById('sl-l').value);
+            const t = parseFloat(document.getElementById('sl-t').value);
+            const waste = parseFloat(document.getElementById('sl-waste').value) || 0;
+            if(isNaN(w) || isNaN(l) || isNaN(t)) return;
+            const net = w * l * (t / 100);
+            const total = net * (1 + (waste/100));
+            document.getElementById('res-sl').innerHTML = `💡 ปริมาตรสุทธิ: ${net.toFixed(2)} m³ | รวมเผื่อ: <b>${total.toFixed(2)} คิว</b>`;
+        }
+
+        function calcBeamWeight() {
+            const w = parseFloat(document.getElementById('bm-w').value);
+            const h = parseFloat(document.getElementById('bm-h').value);
+            if(isNaN(w) || isNaN(h)) return;
+            document.getElementById('res-bm').innerHTML = `💡 นน. คานสถิตคงที่ = <b> ${(w * h * 2400).toFixed(1)} kg/m </b>`;
+        }
+
+        function calcSteelWeight() {
+            const dia = document.getElementById('st-dia').value;
+            const len = parseFloat(document.getElementById('st-len').value);
+            if(isNaN(len)) return;
+            let factor = 0.222;
+            if(dia==="9") factor=0.499;
+            else if(dia==="12") factor=0.888;
+            else if(dia==="16") factor=1.580;
+            else if(dia==="20") factor=2.470;
+            else if(dia==="25") factor=3.850;
+            else if(dia==="28") factor=4.830;
+            else if(dia==="32") factor=6.313;
+            document.getElementById('res-st').innerHTML = `💡 น้ำหนักรวมมวลเหล็กเส้น = <b> ${(factor * len).toFixed(2)} kg </b>`;
+        }
+
+        function calcSteelStrength() {
+            const grade = parseFloat(document.getElementById('fy-grade').value);
+            const area = parseFloat(document.getElementById('fy-area').value);
+            if(isNaN(area)) return;
+            document.getElementById('res-fy').innerHTML = `💡 รับแรงดึงครากปลอดภัยสูงสุด = <b> ${(grade * area).toLocaleString()} kg </b>`;
+        }
+
+        function calcConcreteMix() {
+            const ratio = document.getElementById('mix-ratio').value;
+            const vol = parseFloat(document.getElementById('mix-vol').value);
+            if(isNaN(vol)) return;
+            let c=320, s=0.6, st=1.2;
+            if(ratio==="1:1.5:3") { c=380; s=0.5; st=1.0; }
+            else if(ratio==="1:3:5") { c=240; s=0.7; st=1.3; }
+            document.getElementById('res-mix').innerHTML = `💡 ปูน: ${(c*vol).toFixed(0)} กก. | ทราย: ${(s*vol).toFixed(1)} m³ | หิน: ${(st*vol).toFixed(1)} m³`;
+        }
+
+        function calcSteelBend() {
+            const db = parseFloat(document.getElementById('bend-db').value);
+            const type = parseFloat(document.getElementById('bend-type').value);
+            if(isNaN(db)) return;
+            document.getElementById('res-bend').innerHTML = `💡 ความยาวระยะงอเกี่ยวขอ = <b> ${((type * db)/10).toFixed(1)} ซม. </b>`;
+        }
+
+        function calcSkinFriction() {
+            const cu = parseFloat(document.getElementById('soil-cu').value);
+            const area = parseFloat(document.getElementById('soil-area').value);
+            if(isNaN(cu) || isNaN(area)) return;
+            document.getElementById('res-soil').innerHTML = `💡 กำลังรับแรงฝืดปลอดภัยผิว Qs = <b> ${(0.55 * cu * area).toFixed(2)} ตัน </b>`;
+        }
+
+        function calcWallBlocks() {
+            const w = parseFloat(document.getElementById('wall-w').value);
+            const h = parseFloat(document.getElementById('wall-h').value);
+            if(isNaN(w) || isNaN(h)) return;
+            document.getElementById('res-wall').innerHTML = `💡 พื้นที่: ${(w*h).toFixed(1)} ตร.ม. | ใช้ประมาณ: <b> ${Math.ceil(w*h*13)} ก้อน </b>`;
+        }
+
+        function calcWindLoad() {
+            const h = parseFloat(document.getElementById('wind-height').value);
+            const area = parseFloat(document.getElementById('wind-area').value);
+            if(isNaN(h) || isNaN(area)) return;
+            let q = h > 20 ? 160 : (h > 10 ? 120 : 80);
+            document.getElementById('res-wind').innerHTML = `💡 ความดันลมลัพธ์รวมปะทะ = <b> ${(q * area).toLocaleString()} kg </b>`;
+        }
+
+        function calcStairAngle() {
+            const rise = parseFloat(document.getElementById('stair-rise').value);
+            const run = parseFloat(document.getElementById('stair-run').value);
+            if(!rise || !run) return;
+            const deg = (Math.atan(rise/run) * (180/Math.PI)).toFixed(1);
+            document.getElementById('res-stair').innerHTML = `💡 ความลาดเอียงมุมชัน = <b> ${deg}° </b> (${deg > 42 ? 'ชันเกินไป' : 'ผ่านเกณฑ์ ปลอดภัย'})`;
+        }
+
+        function calcEarthPressure() {
+            const phi = parseFloat(document.getElementById('soil-phi').value);
+            const depth = parseFloat(document.getElementById('soil-depth').value);
+            if(isNaN(phi) || isNaN(depth)) return;
+            const rad = phi * (Math.PI/180);
+            const ka = (1 - Math.sin(rad)) / (1 + Math.sin(rad));
+            const pa = 0.5 * ka * 1.8 * Math.pow(depth, 2);
+            document.getElementById('res-pressure').innerHTML = `💡 ค่า Ka: ${ka.toFixed(3)} | แรงผลักดันรวม Pa: <b>${pa.toFixed(2)} t/m</b>`;
+        }
+
+        function calcTileCount() {
+            const area = parseFloat(document.getElementById('tile-area').value);
+            const w = parseFloat(document.getElementById('tile-w').value);
+            const l = parseFloat(document.getElementById('tile-l').value);
+            if(!area || !w || !l) return;
+            const pcs = Math.ceil((area / ((w/100)*(l/100))) * 1.1);
+            document.getElementById('res-tiles').innerHTML = `💡 ใช้กระเบื้องรวม (+เผื่อเศษ 10%): <b>${pcs} แผ่น</b>`;
+        }
+
+        function calcBearingCapacity() {
+            const c = parseFloat(document.getElementById('foot-cohesion').value);
+            const sf = parseFloat(document.getElementById('foot-sf').value);
+            if(isNaN(c)) return;
+            document.getElementById('res-bearing').innerHTML = `💡 ความเค้นต้านดินปลอดภัย q_all = <b> ${((5.7*c)/sf).toFixed(2)} t/m² </b>`;
+        }
+
+        function calcMaxMoment() {
+            const w = parseFloat(document.getElementById('beam-load').value);
+            const l = parseFloat(document.getElementById('beam-span').value);
+            if(isNaN(w) || isNaN(l)) return;
+            document.getElementById('res-moment').innerHTML = `💡 โมเมนต์ดัดสูงสุดตรงกลาง M_max = <b> ${((w*l*l)/8).toFixed(1)} kg·m </b>`;
+        }
+
+        // 16. Slab Weight
+        function calcPriceForm() {} 
+        function calcSlabWeight() {
+            const thick = parseFloat(document.getElementById('slab-thick').value);
+            const plank = parseFloat(document.getElementById('plank-dead').value);
+            if(isNaN(thick) || isNaN(plank)) return;
+            const topping = (thick / 100) * 2400;
+            document.getElementById('res-slabweight').innerHTML = `💡 น้ำหนักบรรทุกรวมโครงสร้าง = <b> ${(topping + plank).toFixed(1)} kg/m² </b>`;
+        }
+
+        // 17. Bonding Agent
+        function calcBondingAgent() {
+            const area = parseFloat(document.getElementById('bond-area').value);
+            if(isNaN(area)) return;
+            document.getElementById('res-bond').innerHTML = `💡 ปริมาณน้ำยาที่ต้องใช้ประสาน = <b> ${(area * 0.3).toFixed(1)} ลิตร </b>`;
+        }
+
+        // 18. Shoring Space
+        function calcShoringSpace() {
+            const thick = parseFloat(document.getElementById('shoring-thick').value);
+            if(isNaN(thick)) return;
+            let space = thick > 20 ? "0.6 - 0.7 ม." : "0.8 - 1.0 ม.";
+            document.getElementById('res-shoring').innerHTML = `💡 ระยะห่างแนะค้ำยันรับน้ำหนัก: <b>${space}</b>`;
+        }
+
+        // 19. Plywood Form
+        function calcPlywoodForm() {
+            const area = parseFloat(document.getElementById('ply-area').value);
+            if(isNaN(area)) return;
+            document.getElementById('res-plywood').innerHTML = `💡 จำนวนแผ่นไม้อัดขนาดหลักที่ใช้ = <b> ${Math.ceil(area / 2.97)} แผ่น </b>`;
+        }
+
+        // 20. H-Beam Weight
+        function calcHBeamWeight() {
+            const spec = parseFloat(document.getElementById('hbeam-spec').value);
+            const len = parseFloat(document.getElementById('hbeam-len').value);
+            if(isNaN(spec) || isNaN(len)) return;
+            document.getElementById('res-hbeam').innerHTML = `💡 นน. โครงเหล็กรูปพรรณรวม = <b> ${(spec * len).toFixed(1)} kg </b>`;
+        }
+
+        // 21. Excavation Volume
+        function calcExcavationVolume() {
+            const w = parseFloat(document.getElementById('dig-w').value);
+            const l = parseFloat(document.getElementById('dig-l').value);
+            const d = parseFloat(document.getElementById('dig-d').value);
+            if(isNaN(w) || isNaN(l) || isNaN(d)) return;
+            document.getElementById('res-dig').innerHTML = `💡 ปริมาตรดินขุดหลุมสุทธิ = <b> ${(w * l * d * 1.2).toFixed(1)} ลบ.ม. (รวมลาดเอียงพังทลาย) </b>`;
+        }
+
+        // 22. Road Subbase
+        function calcRoadSubbase() {
+            const w = parseFloat(document.getElementById('road-w').value);
+            const l = parseFloat(document.getElementById('road-l').value);
+            const t = parseFloat(document.getElementById('road-t').value);
+            if(!w || !l || !t) return;
+            document.getElementById('res-road').innerHTML = `💡 ปริมาตรหินคลุกบดอัดแน่น = <b> ${(w * l * (t/100) * 1.4).toFixed(1)} m³ (คิว) </b>`;
+        }
+
+        // 23. Swell Volume
+        function calcSwellVolume() {
+            const bank = parseFloat(document.getElementById('soil-bank').value);
+            const swell = parseFloat(document.getElementById('soil-swell').value);
+            if(isNaN(bank)) return;
+            document.getElementById('res-swell').innerHTML = `💡 ปริมาตรดินหลวมสำหรับขนย้าย = <b> ${(bank * swell).toFixed(1)} ลบ.ม. </b>`;
+        }
+
+        // 24. Paint Volume
+        function calcPaintVolume() {
+            const area = parseFloat(document.getElementById('paint-area').value);
+            if(isNaN(area)) return;
+            const gal = Math.ceil((area * 2) / 30);
+            document.getElementById('res-paint').innerHTML = `💡 ใช้สีทาอาคารรวม = <b> ${gal} แกลลอน </b> (ทาเคลือบ 2 รอบ)`;
+        }
+
+        // 25. Curing Water
+        function calcCuringWater() {
+            const area = parseFloat(document.getElementById('cure-area').value);
+            if(isNaN(area)) return;
+            document.getElementById('res-cure').innerHTML = `💡 อัตราน้ำใช้อนุรักษ์บ่มต่อวัน = <b> ${(area * 5).toFixed(0)} ลิตร/วัน </b>`;
+        }
+
+        // 26. Roof Live Load
+        function calcRoofLiveLoad() {
+            const pitch = parseFloat(document.getElementById('roof-pitch').value);
+            const area = parseFloat(document.getElementById('roof-area').value);
+            if(isNaN(pitch) || isNaN(area)) return;
+            let load = pitch > 15 ? 30 : 50;
+            document.getElementById('res-roof').innerHTML = `💡 แรงกดจรน้ำหนักรวมหลังคา = <b> ${(load * area).toLocaleString()} kg </b>`;
+        }
+
+        // 27. Soil Settlement
+        function calcSoilSettlement() {
+            const h = parseFloat(document.getElementById('set-thick').value);
+            const stress = parseFloat(document.getElementById('set-stress').value);
+            if(!h || !stress) return;
+            document.getElementById('res-settle').innerHTML = `💡 อัตราการทรุดตัวแรกเริ่มเบื้องต้น = <b> ${(h * stress * 0.02 * 100).toFixed(1)} ซม. </b>`;
+        }
+
+        // 28. Stirrup Count
+        function calcStirrupCount() {
+            const len = parseFloat(document.getElementById('stir-len').value);
+            const space = parseFloat(document.getElementById('stir-space').value);
+            if(!len || !space) return;
+            const count = Math.ceil((len / (space/100)) + 1);
+            document.getElementById('res-stirrup').innerHTML = `💡 จำนวนเหล็กปลอกโอบรอบที่ใช้ = <b> ${count} เส้น/ปลอก </b>`;
+        }
+
+        // 29. Ramp Length
+        function calcRampLength() {
+            const h = parseFloat(document.getElementById('ramp-height').value);
+            if(isNaN(h)) return;
+            document.getElementById('res-ramp').innerHTML = `💡 ความยาวทางลาดชันกฎหมายกำหนด = <b> ${(h * 12 / 100).toFixed(2)} เมตร </b>`;
+        }
+
+        // 30. Psi To Ksc
+        function calcPsiToKsc() {
+            const psi = parseFloat(document.getElementById('unit-psi').value);
+            if(isNaN(psi)) return;
+            document.getElementById('res-psi').innerHTML = `💡 ค่ากำลังกดแปรผันแรง = <b> ${(psi * 0.0703).toFixed(2)} ksc </b> (kg/cm²)`;
+        }
+
+        // --- 3. EXPANDED ACADEMIC FORUM INJECTION ---
+        let mockArticles = [
+            { id: 1, title: "คู่มือประเมินกำลังรับน้ำหนักปลอดภัยเสาเข็ม (Skin Friction)", category: "งานปฐพีและฐานราก", desc: "การใช้พารามิเตอร์ของแรงเฉือนไม่ระบายน้ำเพื่อหาแรงสถิตที่ขอบเขตเสาเข็มในดินเหนียวกรุงเทพฯ เพื่อความปลอดภัยของฐานรากอาคาร", author: "ฝ่ายวิจัยปฐพีวิทยากร" },
+            { id: 2, title: "ระยะตรวจสอบ Slump Test สำหรับปูนโครงสร้างทั่วไป", category: "วัสดุศาสตร์และคอนกรีต", desc: "กำหนดการตรวจสอบคอนกรีตสดตามเกณฑ์ ASTM C143 ความสูงกระทุ้ง 3 ชั้น ชั้นละ 25 ครั้ง เพื่อให้งานเทเป็นเนื้อเดียวกันและไม่แยกตัว", author: "วิศวกรควบคุมงานเหล็ก" },
+            { id: 3, title: "ระยะตรวจสอบการทำตะขอยืดเหล็กต้านแรงดึง", category: "มาตรฐาน วสท.", desc: "การดัดทำมุมเพื่อสร้าง Anchor ยึดเหนี่ยวในโครงสร้างคอนกรีต ตามเกณฑ์กำหนดการดัดมุม 90 องศา และ 180 องศาเพื่อความเสถียรภาพสูงสุด", author: "คณะทำงานโครงสร้างคอนกรีต" },
+            { id: 4, title: "การออกแบบโครงสร้างต้านทานแรงแผ่นดินไหว มยผ. 1301/1302-61", category: "กฎหมายและแรงลม", desc: "ข้อบัญญัติความปลอดภัยสำหรับสิ่งปลูกสร้างในพื้นที่เสี่ยงภัย การคำนวณหาค่าสัมประสิทธิ์การตอบสนองเชิงสเปกตรัมและการออกแบบดีเทลเหล็กเหนียวพิเศษ", author: "ศูนย์วิจัยอุบัติภัยแห่งชาติ" },
+            { id: 5, title: "เกณฑ์ข้อกำหนดกำลังอัดและการทดสอบแบบไม่ทำลาย (NDT)", category: "ควบคุมคุณภาพหน้างาน", desc: "การใช้อุปกรณ์อุลตร้าโซนิกส์และการยิงค้อนกระแทก (Rebound Hammer Test) เพื่อประเมินค่าความแข็งแรงชั้นผิวคอนกรีตตามมาตรฐาน ASTM C805", author: "สถาบันเทคโนโลยีโครงสร้าง" },
+            { id: 6, title: "การควบคุมการทรุดตัวต่างระดับของฐานราก (Differential Settlement)", category: "โครงสร้างฐานราก", desc: "วิเคราะห์สาเหตุและแนวทางแก้ไขป้องกันการแตกร้าวของโครงสร้างชั้นบนเนื่องจากการทรุดตัวของเสาเข็มไม่เท่ากันในชั้นดินอ่อนแปรปรวน", author: "ภาควิชาวิศวกรรมโยธาประยุกต์" }
+        ];
+
+        function renderArticles() {
+            const container = document.getElementById('articles-container');
+            container.innerHTML = '';
+            mockArticles.forEach(art => {
+                const div = document.createElement('div');
+                div.className = 'cyber-panel p-4 rounded-xl space-y-2.5';
+                div.innerHTML = `
+                    <div class="flex justify-between items-start text-[10px]">
+                        <span class="text-[9px] bg-orange-500/10 text-orange-400 border border-orange-500/20 px-2 py-0.5 rounded font-bold">${art.category}</span>
+                        <span class="text-slate-500 font-mono">ID: #${art.id}</span>
+                    </div>
+                    <h4 class="text-xs font-bold text-slate-200">${art.title}</h4>
+                    <p class="text-[11px] text-slate-400 leading-relaxed">${art.desc}</p>
+                    <div class="border-t border-slate-900 pt-2 flex justify-between items-center text-[10px] text-slate-500">
+                        <span>โดย: ${art.author}</span>
+                        <span class="text-orange-500 font-mono">มยผ. / วสท.</span>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // --- 4. ADVANCED CIVIL AI FACT-CHECK DATABASE (Extensively Expanded) ---
+        const civilKnowledgeDatabase = {
+            "ฐานราก": "• <b>ฐานรากแผ่ (Spread Footing)</b>: ค่าความปลอดภัยขั้นต่ำกำหนดที่ 3.0 เสมอตาม วสท. ใช้ได้ดีในชั้นทรายแน่นหนา<br>• <b>เสาเข็มเจาะระบบแห้ง (Dry Process)</b>: มักเจาะลึกไม่เกิน 18-22 เมตรในดินเหนียวกรุงเทพฯ เพื่อเลี่ยงปัญหาน้ำใต้ดินทะลักพังทลาย<br>• <b>เสาเข็มกลุ่ม (Pile Group)</b>: ต้องคำนวณคิดค่าประสิทธิภาพของกลุ่มเสาเข็ม (Efficiency) เสมอเนื่องจากความเครียดในชั้นดินทับซ้อนกัน",
+            "สูตรคาน": "• <b>กำลังต้านทางทฤษฎีวิธีกำลัง (SDM)</b>: ตัวคูณปรับน้ำหนักใช้งานตัวแปรหลักคือ $U = 1.4D + 1.7L$<br>• <b>สูตรคำนวณหาโมเมนต์ดัดคานต่อเนื่อง</b>: ประเมินตามค่าสัมประสิทธิ์โมเมนต์ของ วสท. และ ACI เพื่อความรวดเร็วหน้างาน<br>• <b>ความหนาแน่นคอนกรีตเสริมเหล็ก</b>: มาตรฐานคิดน้ำหนักบรรทุกถาวรคงที่ที่ $2,400\\text{ kg/m}^3$",
+            "คอนกรีต": "• <b>การทดสอบค่าความยุบตัว (Slump Test)</b>: มาตรฐานงานอาคารทั่วไปอยู่ที่ 7.5-12.5 ซม. หากเป็นปูนปั๊มคอนกรีตอยู่ที่ 10-15 ซม.<br>• <b>การบ่มคอนกรีต (Curing)</b>: ต้องรักษาความชื้นไม่น้อยกว่า 7 วันสำหรับปูนซีเมนต์ปอร์ตแลนด์ประเภทที่ 1 เพื่อป้องกันแตกร้าวระแหง<br>• <b>การถอดไม้แบบรองรับน้ำหนัก</b>: ท้องพื้นและคานต้องมีอายุอย่างน้อย 14-21 วัน หรือเมื่อกำลังอัดทดสอบได้ไม่น้อยกว่า 80% ของค่าออกแบบ",
+            "เหล็กเส้น": "• <b>สเปกชั้นคุณภาพเหล็กเส้นเสริมแรง (มอก. 24-2559)</b>: SR24 (กำลังคราก $2,400\\text{ ksc}$), SD30 ($3,000\\text{ ksc}$), SD40 ($4,000\\text{ ksc}$), SD50 ($5,000\\text{ ksc}$)<br>• <b>ระยะฝังยึดแน่นเหนี่ยวทับซ้อน (Lap Splice)</b>: สำหรับเหล็กข้ออ้อยรับแรงดึงกำหนดห้ามต่ำกว่า $40$ เท่าของขนาดเส้นผ่านศูนย์กลางแกนเหล็ก ($40d_b$)",
+            "กฎหมายระยะร่น": "• <b>พรบ.ควบคุมอาคาร พ.ศ.2522 (ฉบับปรับปรุง)</b>: อาคารพักอาศัยสูงไม่เกิน 9 เมตร หากมีช่องเปิดหรือระเบียงหันหน้าเข้าหาแนวเขตที่ดินผู้อื่น ต้องร่นระยะไม่น้อยกว่า 2.00 เมตร เสมอ หากเป็นผนังทึบร่นได้ 0.50 เมตร (กรณีห่างน้อยกว่า 50 ซม. ต้องมีหนังสือยินยอมเป็นลายลักษณ์อักษรจากเจ้าของที่ดินข้างเคียง)",
+            "นั่งร้าน": "• <b>มาตรฐานความปลอดภัยนั่งร้านเหล็ก</b>: ต้องสามารถรับน้ำหนักบรรทุกใช้งาน (Working Load) ได้อย่างน้อย 4 เท่าของน้ำหนักที่คาดว่าจะใช้งานจริงโดยไม่มีการเสียรูปทางโครงสร้างถาวร และต้องติดตั้งราวกันตก (Guardrail) สูงจากพื้นนั่งร้าน 90-110 ซม.",
+            "งานทาง": "• <b>การทดสอบความหนาแน่นชั้นดินบดอัด (Field Density Test)</b>: ใช้ระเบียบวิธีทรายทดแทน (Sand Cone Method) ตามมาตรฐาน AASHTO T191 เพื่อควบคุมให้เปอร์เซ็นต์การบดอัดแน่นไม่ต่ำกว่า 95% หรือ 98% Modified Proctor Density ตามข้อกำหนดกรมทางหลวง",
+            "ทดสอบดิน": "• <b>การทดสอบหากำลังต้านทานดิน (Standard Penetration Test - SPT)</b>: เป็นการตอกลูกตุ้มน้ำหนัก 140 ปอนด์ ปล่อยตกอิสระระยะ 30 นิ้ว เพื่อนับจำนวนครั้งการตอก (N-Value) นำมาแปรสัมพันธ์หาค่ากำลังรับแรงเฉือนของชั้นดินลึก",
+            "พิกัดน้ำหนัก": "• <b>น้ำหนักบรรทุกจรขั้นต่ำ (Live Load) ตามกฎกระทรวงฉบับที่ 6</b>: บ้านพักอาศัยพักผ่อน = $150\\text{ kg/m}^2$, สำนักงานอาคารพาณิชย์ = $250\\text{ kg/m}^2$, ห้างสรรพสินค้า/คลังสินค้าโรงงาน = $300-500\\text{ kg/m}^2$",
+            "แผ่นดินไหว": "• <b>มาตรฐานการออกแบบต้านแผ่นดินไหว มยผ. 1301/1302</b>: กำหนดการคำนวณแรงเฉือนที่ฐานอาคาร (Base Shear) โดยคำนึงถึงค่าความเร่งสเปกตรัมของพื้นดินตามพิกัดแผนที่ประเทศไทย และประเภทความเหนียวของโครงสร้างคอนกรีต"
+        };
+
+        function handleOfflineAIQuery(event) {
+            event.preventDefault();
+            const input = document.getElementById('ai-input');
+            const chatBox = document.getElementById('ai-chat-box');
+            const queryText = input.value.trim();
+            if (!queryText) return;
+
+            // Render message user asked
+            const userDiv = document.createElement('div');
+            userDiv.className = 'flex items-start space-x-3 justify-end';
+            userDiv.innerHTML = `<div class="bg-orange-500/10 text-orange-400 rounded-xl px-3 py-2 border border-orange-500/20 max-w-[85%] text-xs">${queryText}</div>`;
+            chatBox.appendChild(userDiv);
+
+            let answer = "ขออภัยครับ ไม่พบคีย์เวิร์ดพารามิเตอร์ข้อกำหนดในคลังระบบความรู้ของ AI <br><br>💡 <b>ลองใช้คำค้นหาดังนี้:</b> ฐานราก, สูตรคาน, คอนกรีต, เหล็กเส้น, กฎหมายระยะร่น, นั่งร้าน, งานทาง, ทดสอบดิน, พิกัดน้ำหนัก, แผ่นดินไหว";
+            const lowerQuery = queryText.toLowerCase();
+            
+            for (const key in civilKnowledgeDatabase) {
+                if (lowerQuery.includes(key)) {
+                    answer = `<b>[ผลวิเคราะห์จาก AI Expert System Database]</b><br><br>${civilKnowledgeDatabase[key]}`;
+                    break;
+                }
+            }
+
+            setTimeout(() => {
+                const aiDiv = document.createElement('div');
+                aiDiv.className = 'flex items-start space-x-3';
+                aiDiv.innerHTML = `
+                    <div class="bg-slate-900 text-orange-400 p-2 rounded-lg text-xs border border-orange-500/20"><i class="fa-solid fa-brain"></i></div>
+                    <div class="bg-slate-900/80 rounded-xl px-4 py-3 border border-slate-800 text-slate-300 max-w-[85%] text-xs leading-relaxed">${answer}</div>
+                `;
+                chatBox.appendChild(aiDiv);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }, 300);
+
+            input.value = '';
+        }
+
+        // System Diagnostic Panel utilities
+        function toggleTerminal() {
+            const panel = document.getElementById('terminal-panel');
+            panel.classList.toggle('hidden');
+        }
+
+        function logTerminal(message) {
+            const logBox = document.getElementById('terminal-log');
+            if(!logBox) return;
+            const timeStr = new Date().toLocaleTimeString();
+            const div = document.createElement('div');
+            div.innerText = `[${timeStr}] ${message}`;
+            logBox.appendChild(div);
+            logBox.scrollTop = logBox.scrollHeight;
+        }
+
+        // Initialize setup on window load complete
+        window.addEventListener('load', () => {
+            init3DSpace();
+            renderArticles();
+            logTerminal("[READY] Platform features are completely ready for action.");
+        });
+    </script>
+</body>
+</html>
